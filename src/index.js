@@ -95,6 +95,14 @@ client.once('clientReady', async (c) => {
   console.log('🔄 جاري الاتصال بـ Lavalink...');
 });
 
+process.on('unhandledRejection', (error) => {
+  console.error('خطأ غير معالج:', error?.message ?? error);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('استثناء غير متوقع:', error?.message ?? error);
+});
+
 const token = process.env.DISCORD_TOKEN;
 if (!token) {
   console.error('خطأ: DISCORD_TOKEN غير موجود');
